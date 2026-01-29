@@ -29,7 +29,6 @@ class CsvAneelJob (
 
 
         val header = reader.readLine()?.split(";")?.map { it.trim('"').trim() } ?: return
-        logger.info("Cabeçalho detectado: $header")
         val idx = mapOf(
             "ceg" to header.indexOf("CodCEG"),
             "nome" to header.indexOf("NomEmpreendimento"),
