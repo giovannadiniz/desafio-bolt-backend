@@ -15,7 +15,7 @@ class CsvAneelJob (
 ) {
     private val logger = LoggerFactory.getLogger(javaClass)
 
-    // Use URI para evitar o 'deprecated'
+
     private val url =
         URI.create("https://dadosabertos.aneel.gov.br/dataset/57e4b8b5-a5db-40e6-9901-27ca629d0477/resource/4a615df8-4c25-48fa-bbea-873a36a79518/download/ralie-usina.csv")
             .toURL()
@@ -27,7 +27,7 @@ class CsvAneelJob (
         val stream = url.openStream()
         val reader = BufferedReader(InputStreamReader(stream, Charsets.ISO_8859_1))
 
-        // 1. Descobrir os índices (Igual ao outro candidato)
+
         val header = reader.readLine()?.split(";")?.map { it.trim('"').trim() } ?: return
         logger.info("Cabeçalho detectado: $header")
         val idx = mapOf(
@@ -39,10 +39,10 @@ class CsvAneelJob (
             "agente" to header.indexOf("NomEmpresaConexao")
         )
 
-        // Limpamos o banco antes de começar (Requisito 2)
+
         repository.deleteAllInBatch()
 
-        // 2. O Pulo do Gato: Processar em CHUNKS (Lotes)
+
         reader.lineSequence()
             .mapNotNull { linha ->
                 val colunas = linha.split(";")
@@ -61,7 +61,7 @@ class CsvAneelJob (
                     null
                 }
             }
-            .chunked(1000) // Agrupa de 1000 em 1000
+            .chunked(1000)
             .forEach { lote ->
                 repository.saveAll(lote)
                 logger.info("Lote de ${lote.size} usinas salvo...")
