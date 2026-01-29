@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: desafio
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/geracao
+    username: postgres
+    password: postgres
