@@ -1,4 +1,0 @@
--- IF NOT EXISTS CREATE TABLE usina(
---     BIGSERIAL id_usina PRIMARY KEY,
---     VARCHAR(100) nome_usina NOT NULL,
--- )
