@@ -1,7 +1,7 @@
-package com.bolt.desafio.job
+package com.bolt.desafio.Job
 
-import com.bolt.desafio.entity.Usina
-import com.bolt.desafio.repository.UsinaRepository
+import com.bolt.desafio.Entity.Usina
+import com.bolt.desafio.Repository.UsinaRepository
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
@@ -14,7 +14,7 @@ class CsvAneelJob (
     private val logger = LoggerFactory.getLogger(javaClass)
     private val csvUrl = "https://dadosabertos.aneel.gov.br/dataset/ralie-relatorio-de-acompanhamento-da-expansao-da-oferta-de-geracao-de-energia-eletrica/resource/a3c58ecb-e936-4dc1-884b-9941f7079a73/download/ralie-usina.csv"
 
-    @Scheduled(fixedRate = 86400000)
+    @Scheduled(cron = "0 */10 * * * *")
     fun processarCargaUsinas() {
         logger.info("Iniciando Job de extração da ANEEL...")
 
