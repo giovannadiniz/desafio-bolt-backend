@@ -3,6 +3,17 @@ spring:
     name: desafio
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/geracao
+    url: jdbc:postgresql://localhost:5433/geracao?reWriteBatchedInserts=true
     username: postgres
     password: postgres
+
+    jpa:
+      properties:
+        hibernate:
+          jdbc.batch_size: 1000
+          order_inserts: true
+      hibernate:
+        ddl-auto: validate
+      flyway:
+        enabled: true
+        schemas: energia
