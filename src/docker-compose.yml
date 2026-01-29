@@ -1,13 +1,12 @@
 services:
   db_geracao:
     image: postgres:16
-    #    build: .
     container_name: "geracao_db"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=geracao
-#    restart: always
+    restart: always
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
