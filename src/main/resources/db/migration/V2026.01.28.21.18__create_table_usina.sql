@@ -2,12 +2,13 @@ DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'usinas') THEN
 CREATE TABLE energia.usina (
-                        ceg VARCHAR(50) PRIMARY KEY,
-                        nome_usina VARCHAR(255) NOT NULL,
+                        id BIGSERIAL PRIMARY KEY,
+                        ceg VARCHAR(50),
+                        nome_usina VARCHAR(255),
                         agente VARCHAR(255),
                         combustivel VARCHAR(100),
                         estado_uf VARCHAR(2),
-                        potencia_kw DOUBLE PRECISION NOT NULL
+                        potencia_kw DOUBLE PRECISION
 );
 END IF;
 

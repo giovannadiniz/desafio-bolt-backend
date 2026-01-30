@@ -2,6 +2,8 @@ package com.bolt.desafio.Entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 
@@ -9,6 +11,9 @@ import jakarta.persistence.Table
 @Table(schema = "energia", name = "usina")
 data class Usina(
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+
     @Column(name = "ceg")
     val ceg: String,
 
@@ -27,5 +32,5 @@ data class Usina(
     @Column(name = "potencia_kw")
     val potenciaKw: Double
 ) {
-    constructor() : this("", "", "", "", "", 0.0)
+    constructor() : this( 0L, "", "", "", "", "", 0.0)
 }
